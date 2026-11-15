@@ -238,16 +238,16 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 
 <style>
 #cert{background:#fff;min-height:100vh;display:flex;align-items:center;padding:clamp(76px,11vh,96px) 24px clamp(20px,5vh,56px);overflow:hidden}
-.certw{max-width:min(1200px,calc((100vh - 360px) * 4.2 + 48px));width:100%;margin:0 auto}
-.cert-h{font-size:clamp(40px,min(6vw,10vh),88px);font-weight:600;line-height:1.05;margin:0;width:fit-content}
-.cert-s{margin:6px 0 clamp(24px,4vh,48px);font-size:clamp(18px,1.6vw,24px);font-weight:500;color:#171717}
+.certw{max-width:min(1200px,calc((100vh - 330px) * 4.2 + 48px));width:100%;margin:0 auto;text-align:center}
+.cert-h{font-size:clamp(40px,min(6vw,10vh),88px);font-weight:600;line-height:1.05;margin:0 auto clamp(24px,5vh,56px);width:fit-content}
+.cert-s{margin:0 0 12px}
 .certs{perspective:1200px;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .certs{align-items:start}.certs li{margin:0;padding-left:0!important}.certs li::before{display:none!important}
 .hl{white-space:nowrap}
-.cert-h{padding:.08em 0 .12em;transform-origin:0 60%}
+.cert-h{padding:.08em 0 .12em;transform-origin:50% 60%}
 .cert-h .ctw{background:linear-gradient(90deg,#4F7CFF,#D45CFF);-webkit-background-clip:text;background-clip:text;color:transparent}
 .certs li{will-change:transform,opacity}
-.cert-c{margin:14px 2px 0;font-size:15px;line-height:1.5;color:#2B313B;font-weight:500}
+.cert-c{text-align:left;margin:14px 2px 0;font-size:15px;line-height:1.5;color:#2B313B;font-weight:500}
 .cert-c small{display:block;margin-top:4px;font-size:13px;color:#8D9197;font-weight:400}
 .certs img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 10px 30px rgba(19,25,34,.10);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
 .certs li:hover img{transform:translateY(-4px);box-shadow:0 18px 40px rgba(19,25,34,.16)}
@@ -255,7 +255,7 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 @media (max-width:520px){.hl{padding:7px 8px!important;font-size:12.5px} .hnav{gap:0} .lgb b{padding:4px 7px}}
 @media (max-width:400px){.hdr{padding:4px!important} .hl{padding:7px 6px!important;font-size:12px} .lgb{margin-left:2px} .lgb b{padding:4px 5px;font-size:11px}}
 </style>
-<section class="track" id="cert"><div class="certw"><h2 class="cert-h"><span class="ln"><span class="ctw"><span data-i18n="ct0">Certificate</span></span></span></h2><p class="cert-s"><span class="ln"><span class="ctw"><span data-i18n="ct1">Online courses by FutureSkill</span></span></span></p><ul class="certs">
+<section class="track" id="cert"><div class="certw"><p class="clk cert-s"><span class="ln"><span class="ctw"><span data-i18n="ct1">Online courses by FutureSkill</span></span></span></p><h2 class="cert-h"><span class="ln"><span class="ctw"><span data-i18n="ct0">Certificate</span></span></span></h2><ul class="certs">
 <li><img src="assets/img/cert-1.webp" alt="FutureSkill certificate: Design Tokens in Figma (20/06/2024)" loading="lazy"><p class="cert-c"><span data-i18n="ct2">Extending a Design System with Design Tokens in Figma for scalability</span><small>20/06/2024</small></p></li>
 <li><img src="assets/img/cert-2.webp" alt="FutureSkill certificate: Analyzing problems and wireframing in Figma (22/02/2024)" loading="lazy"><p class="cert-c"><span data-i18n="ct3">Problem analysis and wireframing in Figma</span><small>22/02/2024</small></p></li>
 <li><img src="assets/img/cert-3.webp" alt="FutureSkill certificate: Design System and Components in Figma (16/02/2024)" loading="lazy"><p class="cert-c"><span data-i18n="ct4">Boosting design efficiency with Design Systems and Components in Figma</span><small>16/02/2024</small></p></li>
@@ -299,8 +299,8 @@ this.ctx=g.context(()=>{
  g.from(".hs .ln>span",{yPercent:110,duration:1.1,stagger:.08,ease:"expo.out",delay:.1});
  g.from(".htop,.hbot>*",{y:20,opacity:0,stagger:.06,duration:.8,delay:.5});
  const tl=g.timeline({scrollTrigger:{trigger:"#hero",start:"top top",end:"bottom bottom",scrub:true}});
- tl.to(".h1x",{scale:mm?1:1.15,ease:"none"},0).to(".w1",{xPercent:-40,opacity:0,ease:"none"},0).to(".w2",{xPercent:40,opacity:0,ease:"none"},0).to(".w0,.w5",{yPercent:-60,opacity:0,ease:"none"},0)
-   .to(".scue,.htop,.hbot",{opacity:0,y:30,ease:"none"},0);
+ tl.fromTo(".h1x",{scale:1},{scale:mm?1:1.15,ease:"none",immediateRender:false},0).fromTo(".w1",{xPercent:0,opacity:1},{xPercent:-40,opacity:0,ease:"none",immediateRender:false},0).fromTo(".w2",{xPercent:0,opacity:1},{xPercent:40,opacity:0,ease:"none",immediateRender:false},0).fromTo(".w0,.w5",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false},0)
+   .fromTo(".scue,.htop,.hbot",{opacity:1,y:0},{opacity:0,y:30,ease:"none",immediateRender:false},0);
  if(document.getElementById("cert")){
   const ci=g.timeline({scrollTrigger:{trigger:"#cert",start:"top 85%",end:mm?"top 30%":"top 15%",scrub:.6}});
   ci.fromTo("#cert .ctw",{yPercent:110},{yPercent:0,stagger:.12,ease:"expo.out",duration:.9},0)
