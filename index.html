@@ -222,7 +222,7 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 </style>
 
 <div id="pf">
-<header class="hdr" id="hdr"><nav class="hnav" aria-label="เมนูหลัก"><a href="#hero" class="hl on" data-s="hero"><span data-i18n="k2">Home</span></a><a href="#clients" class="hl" data-s="clients"><span data-i18n="nv3">Clients</span></a><a href="#cert" class="hl" data-s="cert"><span data-i18n="nv4">Certificate</span></a><a href="#prof" class="hl" data-s="prof"><span data-i18n="k3">Work</span></a><a href="#contact" class="hl" data-s="pain"><span data-i18n="k4">Contact</span></a><a href="resume.html" class="hl hlr" aria-label="Resume"><svg class="hlr-i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span class="hlr-t" data-i18n="nv5">Resume</span></a></nav><button type="button" class="lgb" id="lgb" aria-label="Switch language"><b data-l="th">TH</b><b data-l="en" class="on">EN</b></button></header>
+<header class="hdr" id="hdr"><span class="mcur" id="mcur" aria-hidden="true">Home</span><nav class="hnav" id="hnav" aria-label="เมนูหลัก"><a href="#hero" class="hl on" data-s="hero"><span data-i18n="k2">Home</span></a><a href="#clients" class="hl" data-s="clients"><span data-i18n="nv3">Clients</span></a><a href="#cert" class="hl" data-s="cert"><span data-i18n="nv4">Certificate</span></a><a href="#prof" class="hl" data-s="prof"><span data-i18n="k3">Work</span></a><a href="#contact" class="hl" data-s="pain"><span data-i18n="k4">Contact</span></a><a href="resume.html" class="hl hlr" aria-label="Resume"><svg class="hlr-i" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg><span class="hlr-t" data-i18n="nv5">Resume</span></a></nav><button type="button" class="mbtn" id="mbtn" aria-label="Open menu" aria-expanded="false" aria-controls="hnav"><svg class="i-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg><svg class="i-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button><button type="button" class="lgb" id="lgb" aria-label="Switch language"><b data-l="th">TH</b><b data-l="en" class="on">EN</b></button></header>
 
 <section class="track" id="hero"><div class="stage hs">
 <div class="hmid">
@@ -424,5 +424,46 @@ new Portfolio().componentDidMount();</script>
 @media (max-width:400px){#hdr{padding:3px!important}.hnav .hl{padding:7px 5px!important;font-size:11.5px!important;letter-spacing:-.01em}.hlr{padding-left:6px!important;padding-right:6px!important}.lgb{margin-left:1px!important}.lgb b{padding:4px 5px!important;font-size:10.5px!important}}
 @media (max-width:340px){.hnav .hl{padding:6px 4px!important;font-size:11px!important}.hlr-i{width:14px;height:14px}.lgb b{padding:4px 4px!important}#hdr{padding:2px!important}}
 </style>
+<style id="mnav">
+.mcur,.mbtn{display:none}
+@media (max-width:760px){
+ #hdr{left:12px!important;right:12px!important;transform:none!important;width:auto!important;max-width:none!important;justify-content:flex-start!important;gap:8px!important;padding:6px 6px 6px 18px!important;border-radius:999px}
+ .mcur{display:block;flex:1;min-width:0;font-size:16px;font-weight:600;color:#171717;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ .hdr.dark .mcur{color:#fff}
+ #hdr .lgb{order:2;margin-left:0!important}
+ #hdr .lgb b{padding:7px 11px!important;font-size:13px!important}
+ .mbtn{order:3;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border:0;border-radius:999px;background:#131922;color:#fff;cursor:pointer;flex:none}
+ .hdr.dark .mbtn{background:#fff;color:#131922}
+ .mbtn .i-close{display:none}
+ #hdr.open .mbtn .i-open{display:none}
+ #hdr.open .mbtn .i-close{display:block}
+ /* the link list becomes a drop-down panel */
+ #hdr .hnav{display:none!important;position:absolute;top:calc(100% + 8px);left:0;right:0;flex-direction:column!important;gap:2px!important;padding:8px!important;background:#fff;border-radius:22px;box-shadow:0 18px 50px -12px rgba(19,25,34,.35),0 0 0 1px rgba(19,25,34,.06)}
+ #hdr.open .hnav{display:flex!important;animation:mnavIn .22s cubic-bezier(.2,.8,.2,1)}
+ #hdr .hnav .hl{display:flex!important;align-items:center;gap:10px;min-height:50px;padding:0 16px!important;font-size:17px!important;font-weight:500;letter-spacing:0!important;color:#171717!important;background:transparent!important;border-radius:14px}
+ #hdr .hnav .hl.on{background:#F1F2F5!important;color:#171717!important;font-weight:600}
+ #hdr .hnav .hl:active{background:#E8EAEF!important}
+ #hdr .hnav .hlr{margin-top:4px;border-top:1px solid #EEF0F3;border-radius:0 0 14px 14px;padding-top:2px!important}
+ #hdr .hnav .hlr-t{display:inline!important}
+ #hdr .hnav .hlr-i{display:block!important;width:18px;height:18px}
+ .mscrim{position:fixed;inset:0;z-index:49;background:rgba(19,25,34,.28);opacity:0;pointer-events:none;transition:opacity .2s}
+ .mscrim.on{opacity:1;pointer-events:auto}
+}
+@keyframes mnavIn{from{opacity:0;transform:translateY(-6px) scale(.98)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion:reduce){#hdr.open .hnav{animation:none}}
+</style>
+<script>
+(()=>{const hdr=document.getElementById('hdr'),btn=document.getElementById('mbtn'),cur=document.getElementById('mcur'),nav=document.getElementById('hnav');if(!hdr||!btn)return;
+ const scrim=document.createElement('div');scrim.className='mscrim';document.body.appendChild(scrim);
+ const set=o=>{hdr.classList.toggle('open',o);scrim.classList.toggle('on',o);btn.setAttribute('aria-expanded',o);btn.setAttribute('aria-label',o?'Close menu':'Open menu');};
+ btn.addEventListener('click',()=>set(!hdr.classList.contains('open')));
+ scrim.addEventListener('click',()=>set(false));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')set(false)});
+ nav.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>set(false)));
+ const upd=()=>{const on=nav.querySelector('.hl.on');cur.textContent=(on?on.textContent:nav.querySelector('.hl').textContent).trim();};
+ new MutationObserver(upd).observe(nav,{subtree:true,attributes:true,attributeFilter:['class'],childList:true,characterData:true});upd();
+ addEventListener('resize',()=>{if(innerWidth>760)set(false)});
+})();
+</script>
 </body>
 </html>
