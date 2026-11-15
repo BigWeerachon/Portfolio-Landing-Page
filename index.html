@@ -218,7 +218,7 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 </style>
 
 <div id="pf">
-<header class="hdr" id="hdr"><nav class="hnav" aria-label="เมนูหลัก"><a href="#hero" class="hl on" data-s="hero"><span data-i18n="k2">Home</span></a><a href="#clients" class="hl" data-s="clients"><span data-i18n="nv3">Clients</span></a><a href="#prof" class="hl" data-s="prof"><span data-i18n="k3">Work</span></a><a href="#contact" class="hl" data-s="pain"><span data-i18n="k4">Contact</span></a></nav><button type="button" class="lgb" id="lgb" aria-label="Switch language"><b data-l="th">TH</b><b data-l="en" class="on">EN</b></button></header>
+<header class="hdr" id="hdr"><nav class="hnav" aria-label="เมนูหลัก"><a href="#hero" class="hl on" data-s="hero"><span data-i18n="k2">Home</span></a><a href="#clients" class="hl" data-s="clients"><span data-i18n="nv3">Clients</span></a><a href="#cert" class="hl" data-s="cert"><span>Certificate</span></a><a href="#prof" class="hl" data-s="prof"><span data-i18n="k3">Work</span></a><a href="#contact" class="hl" data-s="pain"><span data-i18n="k4">Contact</span></a></nav><button type="button" class="lgb" id="lgb" aria-label="Switch language"><b data-l="th">TH</b><b data-l="en" class="on">EN</b></button></header>
 
 <section class="track" id="hero"><div class="stage hs">
 <div class="hmid">
@@ -231,6 +231,25 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 
 
 <section class="track" id="clients"><div class="stage clstage"><div class="clw"><p class="clk"><span class="ln"><span class="cw0"><span data-i18n="cl0">Trusted by</span></span></span></p><h2 class="h2" style="color:#171717;font-size:clamp(32px,4.4vw,64px)"><span class="ln"><span class="cw1"><span data-i18n="cl1">Companies I've worked with</span></span></span></h2><ul class="lgs"><li class="lg"><img src="assets/img/logo-esm.png" alt="E.S.M. Solution" style="height:76px"></li><li class="lg"><img src="assets/img/logo-codediva.png" alt="CODEDIVA" style="height:44px"></li><li class="lg"><img src="assets/img/logo-vlink.png" alt="VLINK" style="height:40px"></li><li class="lg"><img src="assets/img/logo-gc.png" alt="GC" style="height:72px"></li><li class="lg"><img src="assets/img/logo-gulf.png" alt="Gulf Space Technology" style="height:48px"></li><li class="lg"><img src="assets/img/logo-mapboss.png" alt="mapboss" style="height:116px"></li><li class="lg"><img src="assets/img/logo-jupiter.png" alt="Jupiter Professional Services" style="height:104px"></li><li class="lg"><img src="assets/img/logo-schoolbright.png" alt="School Bright" style="height:52px"></li></ul></div></div></section>
+
+<style>
+#cert{background:#fff;padding:120px 24px 140px}
+.certw{max-width:1200px;margin:0 auto}
+.cert-h{font-size:clamp(44px,6vw,88px);font-weight:600;line-height:1.05;margin:0;background:linear-gradient(90deg,#4F7CFF,#D45CFF);-webkit-background-clip:text;background-clip:text;color:transparent;width:fit-content}
+.cert-s{margin:10px 0 48px;font-size:clamp(18px,1.6vw,24px);font-weight:500;color:#171717}
+.certs{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.certs li{margin:0}
+.certs img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 10px 30px rgba(19,25,34,.10);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
+.certs li:hover img{transform:translateY(-4px);box-shadow:0 18px 40px rgba(19,25,34,.16)}
+@media (max-width:900px){.certs{grid-template-columns:1fr;max-width:560px}#cert{padding:80px 16px 96px}}
+@media (max-width:520px){.hl{padding:7px 8px!important;font-size:12.5px} .hnav{gap:0} .lgb b{padding:4px 7px}}
+@media (max-width:400px){.hdr{padding:4px!important} .hl{padding:7px 6px!important;font-size:12px} .lgb{margin-left:2px} .lgb b{padding:4px 5px;font-size:11px}}
+</style>
+<section class="track" id="cert"><div class="certw"><h2 class="cert-h">Certificate</h2><p class="cert-s">FutureSkill</p><ul class="certs">
+<li><img src="assets/img/cert-1.webp" alt="FutureSkill certificate: Design Tokens in Figma (20/06/2024)" loading="lazy"></li>
+<li><img src="assets/img/cert-2.webp" alt="FutureSkill certificate: Analyzing problems and wireframing in Figma (22/02/2024)" loading="lazy"></li>
+<li><img src="assets/img/cert-3.webp" alt="FutureSkill certificate: Design System and Components in Figma (16/02/2024)" loading="lazy"></li>
+</ul></div></section>
 
 <section id="prof"><div class="pwrap">
 <div class="phead"><h2 class="h2" style="color:#171717"><span data-i18n="k5">Work</span> <span style="color:#8D9197">(22)</span></h2></div>
@@ -258,7 +277,7 @@ const g=window.gsap,ST=window.ScrollTrigger; g.registerPlugin(ST);
 const $=(s)=>document.querySelector(s),$$=(s)=>Array.from(document.querySelectorAll(s));
 const reduce=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 const hdr=$("#hdr"); const hls=$$(".hl");
- const secs=["hero","clients","prof","pain"].map(id=>document.getElementById(id)); let curS="";
+ const secs=["hero","clients","cert","prof","pain"].map(id=>document.getElementById(id)); let curS="";
  const upd=()=>{ const mid=innerHeight*.5; let id="hero"; secs.forEach(el=>{ if(el&&el.getBoundingClientRect().top<=mid) id=el.id; }); if(id!==curS){curS=id; hls.forEach(a=>a.classList.toggle("on",a.dataset.s===id)); hdr.classList.toggle("dark",id==="pain");} };
  window.addEventListener("scroll",upd,{passive:true}); g.ticker.add(upd); upd();
  hls.forEach(a=>a.addEventListener("click",e=>{e.preventDefault();const t=document.querySelector(a.getAttribute("href")).closest("section")||document.querySelector(a.getAttribute("href"));const y=t.getBoundingClientRect().top+scrollY;if(this.lenis)this.lenis.scrollTo(y,{duration:1.2});else window.scrollTo({top:y,behavior:"smooth"});}));
