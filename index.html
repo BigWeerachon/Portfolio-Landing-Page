@@ -317,13 +317,16 @@ this.ctx=g.context(()=>{
  }
  window.addEventListener("load",()=>ST.refresh()); try{let rt,lh=document.body.scrollHeight;new ResizeObserver(()=>{const h=document.body.scrollHeight;if(Math.abs(h-lh)<2)return;lh=h;clearTimeout(rt);rt=setTimeout(()=>ST.refresh(),180);}).observe(document.body);}catch(e){} const cs=$$(".case");
  const big=innerWidth>760&&innerHeight>620; const slots=$$(".cslot");
+ const fitSticky=()=>{ if(!mm)return; const pn=document.querySelector(".pnav"); const t0=(pn?pn.getBoundingClientRect().height:120)+8;
+   slots.forEach(sl=>{ const h=sl.offsetHeight; sl.style.top=Math.round(Math.min(t0,innerHeight-h-12))+"px"; }); };
+ fitSticky(); window.addEventListener("resize",fitSticky); ST.addEventListener("refreshInit",fitSticky);
  cs.forEach((c,k)=>{
   const el=[c.querySelector(".cnum"),c.querySelector(".ptitle"),c.querySelector(".ptype"),...c.querySelectorAll(".pbul li")], im=c.querySelector(".cimg img");
   const tl=g.timeline({defaults:{ease:"power2.out"},scrollTrigger:{trigger:slots[k],start:mm?"top 95%":"top 90%",end:mm?"top 55%":"top 15%",scrub:mm?.4:0.8}});
   if(big&&k>0) tl.fromTo(c,{y:80,scale:.96},{y:0,scale:1,duration:1},0);
   tl.fromTo(el,{y:28,opacity:0},{y:0,opacity:1,stagger:.08,duration:.6},0.25)
     .fromTo(im,{x:60,opacity:0,scale:.97},{x:0,opacity:1,scale:1,duration:.8},0.2);
-  if(big&&slots[k+1]) g.fromTo(c,{filter:"blur(0px) brightness(1)",scale:1},{filter:"blur(8px) brightness(.96)",scale:.94,ease:"none",immediateRender:false,scrollTrigger:{trigger:slots[k+1],start:"top 55%",end:"top 8%",scrub:.4}});
+  if((big||mm)&&slots[k+1]) g.fromTo(c,{filter:"blur(0px) brightness(1)",scale:1},{filter:"blur(8px) brightness(.96)",scale:.94,ease:"none",immediateRender:false,scrollTrigger:{trigger:slots[k+1],start:mm?"top 70%":"top 55%",end:mm?"top 25%":"top 8%",scrub:.4}});
  });
  const nls=$$(".nl"),nav=$("#pnav").parentNode; const setA=(i)=>{nls.forEach((a,k)=>{a.classList.toggle("on",k===i);a.dataset.d=Math.min(4,Math.abs(k-i));}); const pc=$("#pcur"); if(pc)pc.textContent=String(i+1).padStart(2,"0"); const pf=$("#pfill"); if(pf){const fit=()=>{const rl=pf.parentNode.getBoundingClientRect(),r=nls[i].getBoundingClientRect(); pf.style.height=Math.max(0,r.top+r.height/2-rl.top)+"px";}; fit(); clearTimeout(pf._t); pf._t=setTimeout(fit,400);} const a=nls[i]; if(nav.scrollHeight>nav.clientHeight){nav.scrollTo({top:a.offsetTop-nav.clientHeight/2,behavior:"smooth"})} if(nav.scrollWidth>nav.clientWidth){const nr=nav.getBoundingClientRect(),ar=a.getBoundingClientRect();nav.scrollTo({left:Math.max(0,nav.scrollLeft+ar.left-nr.left-(nr.width-ar.width)/2),behavior:"smooth"})} };
  const trg=slots.map((sl,k)=>ST.create({trigger:sl,start:"top 45%",end:"bottom 45%",onToggle:s=>{if(s.isActive)setA(k)}}));
@@ -383,6 +386,13 @@ new Portfolio().componentDidMount();</script>
 @media (max-width:900px) and (max-height:640px){
  #clients .clstage{padding:60px 16px 16px!important} .lg{height:58px!important} .lg img{max-height:34px!important} .lgs{margin-top:16px!important}
  #clients .h2{font-size:28px!important}
+}
+
+@media (max-width:900px){
+ .cslot{position:sticky!important;top:132px;height:auto!important;padding:0!important;margin:0 0 20px!important}
+ .cslot .case{box-shadow:0 -10px 30px -12px rgba(19,25,34,.18)}
+ .cimg img{max-height:36vh;max-height:36svh;width:auto!important;max-width:100%!important;margin:0 auto;display:block;object-fit:contain}
+ .pbul li{font-size:15px}
 }
 </style>
 </body>
