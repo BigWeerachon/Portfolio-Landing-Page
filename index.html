@@ -319,6 +319,7 @@ this.ctx=g.context(()=>{
   if(big&&k>0) tl.fromTo(c,{y:80,scale:.96},{y:0,scale:1,duration:1},0);
   tl.fromTo(el,{y:28,opacity:0},{y:0,opacity:1,stagger:.08,duration:.6},0.25)
     .fromTo(im,{x:60,opacity:0,scale:.97},{x:0,opacity:1,scale:1,duration:.8},0.2);
+  if(big&&slots[k+1]) g.fromTo(c,{filter:"blur(0px) brightness(1)",scale:1},{filter:"blur(8px) brightness(.96)",scale:.94,ease:"none",immediateRender:false,scrollTrigger:{trigger:slots[k+1],start:"top 55%",end:"top 8%",scrub:.4}});
  });
  const nls=$$(".nl"),nav=$("#pnav").parentNode; const setA=(i)=>{nls.forEach((a,k)=>{a.classList.toggle("on",k===i);a.dataset.d=Math.min(4,Math.abs(k-i));}); const pc=$("#pcur"); if(pc)pc.textContent=String(i+1).padStart(2,"0"); const pf=$("#pfill"); if(pf){const fit=()=>{const rl=pf.parentNode.getBoundingClientRect(),r=nls[i].getBoundingClientRect(); pf.style.height=Math.max(0,r.top+r.height/2-rl.top)+"px";}; fit(); clearTimeout(pf._t); pf._t=setTimeout(fit,400);} const a=nls[i]; if(nav.scrollHeight>nav.clientHeight){nav.scrollTo({top:a.offsetTop-nav.clientHeight/2,behavior:"smooth"})} if(nav.scrollWidth>nav.clientWidth){nav.scrollTo({left:a.parentNode.offsetLeft-20,behavior:"smooth"})} };
  const trg=slots.map((sl,k)=>ST.create({trigger:sl,start:"top 45%",end:"bottom 45%",onToggle:s=>{if(s.isActive)setA(k)}}));
