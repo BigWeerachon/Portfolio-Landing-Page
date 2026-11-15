@@ -137,7 +137,7 @@ h1.h1{font-size:64px;font-weight:500;line-height:1.15;color:#171717;margin:0;let
 .clstage{display:flex;align-items:center;justify-content:center;padding:0 24px}.clw{width:100%}
 .clw{max-width:1200px;margin:0 auto;text-align:center}
 #clients .h2{transform-origin:50% 60%}
-#clients{height:auto!important}#clients .clstage{position:relative;height:auto;min-height:100vh}
+
 .lgs{perspective:1200px}
 .lg{will-change:transform,opacity}
 .clk{font-size:13px;color:#8D9197;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
@@ -237,7 +237,8 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 <section class="track" id="clients"><div class="stage clstage"><div class="clw"><p class="clk"><span class="ln"><span class="cw0"><span data-i18n="cl0">Trusted by</span></span></span></p><h2 class="h2" style="color:#171717;font-size:clamp(32px,4.4vw,64px)"><span class="ln"><span class="cw1"><span data-i18n="cl1">Companies I've worked with</span></span></span></h2><ul class="lgs"><li class="lg"><img src="assets/img/logo-esm.png" alt="E.S.M. Solution" style="height:76px"></li><li class="lg"><img src="assets/img/logo-codediva.png" alt="CODEDIVA" style="height:44px"></li><li class="lg"><img src="assets/img/logo-vlink.png" alt="VLINK" style="height:40px"></li><li class="lg"><img src="assets/img/logo-gc.png" alt="GC" style="height:72px"></li><li class="lg"><img src="assets/img/logo-gulf.png" alt="Gulf Space Technology" style="height:48px"></li><li class="lg"><img src="assets/img/logo-mapboss.png" alt="mapboss" style="height:116px"></li><li class="lg"><img src="assets/img/logo-jupiter.png" alt="Jupiter Professional Services" style="height:104px"></li><li class="lg"><img src="assets/img/logo-schoolbright.png" alt="School Bright" style="height:52px"></li></ul></div></div></section>
 
 <style>
-#cert{background:#fff;min-height:100vh;display:flex;align-items:center;padding:clamp(76px,11vh,96px) 24px clamp(20px,5vh,56px);overflow:hidden}
+#cert{background:#fff}
+#cert .certstage{min-height:100vh;display:flex;align-items:center;padding:clamp(76px,11vh,96px) 24px clamp(20px,5vh,56px);overflow:hidden}
 .certw{max-width:min(1200px,calc((100vh - 330px) * 4.2 + 48px));width:100%;margin:0 auto;text-align:center}
 .cert-h{font-size:clamp(40px,min(6vw,10vh),88px);font-weight:600;line-height:1.05;margin:0 auto clamp(24px,5vh,56px);width:fit-content}
 .cert-s{margin:0 0 12px}
@@ -251,15 +252,16 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 .cert-c small{display:block;margin-top:4px;font-size:13px;color:#8D9197;font-weight:400}
 .certs img{display:block;width:100%;height:auto;border-radius:10px;box-shadow:0 10px 30px rgba(19,25,34,.10);transition:transform .35s cubic-bezier(.2,.8,.2,1),box-shadow .35s}
 .certs li:hover img{transform:translateY(-4px);box-shadow:0 18px 40px rgba(19,25,34,.16)}
-@media (max-width:900px){.certs{grid-template-columns:1fr;max-width:560px}#cert{display:block;min-height:0;padding:80px 16px 96px}}
+@media (max-width:900px){.certs{grid-template-columns:1fr;max-width:560px}#cert .certstage{display:block;position:relative;height:auto;min-height:0;overflow:visible;padding:80px 16px 96px}}
+@media (min-width:901px){#hero{height:180vh!important}#clients{height:240vh!important}#cert{height:240vh!important}#hero>.stage,#clients>.stage,#cert>.stage{position:sticky!important;top:0;height:100vh!important;min-height:0!important;overflow:hidden}#hero>.stage{display:flex;flex-direction:column;justify-content:center}}
 @media (max-width:520px){.hl{padding:7px 8px!important;font-size:12.5px} .hnav{gap:0} .lgb b{padding:4px 7px}}
 @media (max-width:400px){.hdr{padding:4px!important} .hl{padding:7px 6px!important;font-size:12px} .lgb{margin-left:2px} .lgb b{padding:4px 5px;font-size:11px}}
 </style>
-<section class="track" id="cert"><div class="certw"><p class="clk cert-s"><span class="ln"><span class="ctw"><span data-i18n="ct1">Online courses by FutureSkill</span></span></span></p><h2 class="cert-h"><span class="ln"><span class="ctw"><span data-i18n="ct0">Certificate</span></span></span></h2><ul class="certs">
+<section class="track" id="cert"><div class="stage certstage"><div class="certw"><p class="clk cert-s"><span class="ln"><span class="ctw"><span data-i18n="ct1">Online courses by FutureSkill</span></span></span></p><h2 class="cert-h"><span class="ln"><span class="ctw"><span data-i18n="ct0">Certificate</span></span></span></h2><ul class="certs">
 <li><img src="assets/img/cert-1.webp" alt="FutureSkill certificate: Design Tokens in Figma (20/06/2024)" loading="lazy"><p class="cert-c"><span data-i18n="ct2">Extending a Design System with Design Tokens in Figma for scalability</span><small>20/06/2024</small></p></li>
 <li><img src="assets/img/cert-2.webp" alt="FutureSkill certificate: Analyzing problems and wireframing in Figma (22/02/2024)" loading="lazy"><p class="cert-c"><span data-i18n="ct3">Problem analysis and wireframing in Figma</span><small>22/02/2024</small></p></li>
 <li><img src="assets/img/cert-3.webp" alt="FutureSkill certificate: Design System and Components in Figma (16/02/2024)" loading="lazy"><p class="cert-c"><span data-i18n="ct4">Boosting design efficiency with Design Systems and Components in Figma</span><small>16/02/2024</small></p></li>
-</ul></div></section>
+</ul></div></div></section>
 
 <section id="prof"><div class="pwrap">
 <div class="phead"><h2 class="h2" style="color:#171717"><span data-i18n="k5">Work</span> <span style="color:#8D9197">(22)</span></h2></div>
@@ -302,12 +304,12 @@ this.ctx=g.context(()=>{
  tl.fromTo(".h1x",{scale:1},{scale:mm?1:1.15,ease:"none",immediateRender:false},0).fromTo(".w1",{xPercent:0,opacity:1},{xPercent:-40,opacity:0,ease:"none",immediateRender:false},0).fromTo(".w2",{xPercent:0,opacity:1},{xPercent:40,opacity:0,ease:"none",immediateRender:false},0).fromTo(".w0,.w5",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false},0)
    .fromTo(".scue,.htop,.hbot",{opacity:1,y:0},{opacity:0,y:30,ease:"none",immediateRender:false},0);
  if(document.getElementById("cert")){
-  const ci=g.timeline({scrollTrigger:{trigger:"#cert",start:"top 85%",end:mm?"top 30%":"top 15%",scrub:.6}});
+  const ci=g.timeline({scrollTrigger:{trigger:"#cert",start:"top 85%",end:mm?"top 30%":"top top",scrub:.6}});
   ci.fromTo("#cert .ctw",{yPercent:110},{yPercent:0,stagger:.12,ease:"expo.out",duration:.9},0)
     .fromTo("#cert .certs li",{y:90,opacity:0,rotateX:mm?0:12,scale:.94},{y:0,opacity:1,rotateX:0,scale:1,stagger:.14,ease:"power3.out",duration:.8},.2);
-  if(!mm){const co=g.timeline({scrollTrigger:{trigger:"#cert",start:"bottom 85%",end:"bottom top",scrub:true}});
-  co.fromTo("#cert .cert-h",{scale:1},{scale:1.15,ease:"none",immediateRender:false,},0).fromTo("#cert .cert-h .ctw",{xPercent:0,yPercent:0,opacity:1},{xPercent:-30,opacity:0,ease:"none",immediateRender:false,},0).fromTo("#cert .cert-s .ctw",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false,},0)
-    .fromTo("#cert .certs li",{y:0,opacity:1,scale:1,rotateX:0},{y:(i)=>-60-i*25,opacity:0,ease:"none",immediateRender:false},0);}
+  if(!mm){const co=g.timeline({scrollTrigger:{trigger:"#cert",start:"top top",end:"bottom bottom",scrub:true}});co.to({},{duration:.45});
+  co.fromTo("#cert .cert-h",{scale:1},{scale:1.15,ease:"none",immediateRender:false,},.45).fromTo("#cert .cert-h .ctw",{xPercent:0,yPercent:0,opacity:1},{xPercent:-30,opacity:0,ease:"none",immediateRender:false,},.45).fromTo("#cert .cert-s .ctw",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false,},.45)
+    .fromTo("#cert .certs li",{y:0,opacity:1,scale:1,rotateX:0},{y:(i)=>-60-i*25,opacity:0,ease:"none",immediateRender:false},.45);}
  }
  window.addEventListener("load",()=>ST.refresh()); const cs=$$(".case");
  const big=innerWidth>760&&innerHeight>620; const slots=$$(".cslot");
@@ -325,12 +327,12 @@ this.ctx=g.context(()=>{
  ST.create({trigger:"#prof",start:"top 40%",end:"bottom 60%",onToggle:s=>pr.classList.toggle("show",s.isActive),onUpdate:s=>{const i=Math.min(cs.length-1,Math.floor(s.progress*cs.length));pn.textContent=String(i+1).padStart(2,"0")+" / "+cs.length;pb.style.width=(s.progress*100)+"%";}});
  g.to("#pf",{backgroundColor:"#131922",ease:"none",scrollTrigger:{trigger:"#pain",start:"top bottom",end:"top top",scrub:true}});
  {const lgs=$$(".lg");
-  const li=g.timeline({scrollTrigger:{trigger:"#clients",start:"top 85%",end:mm?"top 30%":"top 15%",scrub:.6}});
+  const li=g.timeline({scrollTrigger:{trigger:"#clients",start:"top 85%",end:mm?"top 30%":"top top",scrub:.6}});
   li.fromTo(".cw0,.cw1",{yPercent:110},{yPercent:0,stagger:.12,ease:"expo.out",duration:.9},0)
     .fromTo(lgs,{y:90,opacity:0,rotateX:mm?0:12,scale:.94},{y:0,opacity:1,rotateX:0,scale:1,stagger:.08,ease:"power3.out",duration:.8},.2);
-  if(!mm){const lo=g.timeline({scrollTrigger:{trigger:"#clients",start:"bottom 85%",end:"bottom top",scrub:true}});
-  lo.fromTo("#clients .h2",{scale:1},{scale:1.15,ease:"none",immediateRender:false,},0).fromTo(".cw1",{xPercent:0,yPercent:0,opacity:1},{xPercent:-30,opacity:0,ease:"none",immediateRender:false,},0).fromTo(".cw0",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false,},0)
-    .fromTo(lgs,{y:0,opacity:1,scale:1,rotateX:0},{y:(i)=>-50-i*12,opacity:0,ease:"none",immediateRender:false},0);}
+  if(!mm){const lo=g.timeline({scrollTrigger:{trigger:"#clients",start:"top top",end:"bottom bottom",scrub:true}});lo.to({},{duration:.45});
+  lo.fromTo("#clients .h2",{scale:1},{scale:1.15,ease:"none",immediateRender:false,},.45).fromTo(".cw1",{xPercent:0,yPercent:0,opacity:1},{xPercent:-30,opacity:0,ease:"none",immediateRender:false,},.45).fromTo(".cw0",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false,},.45)
+    .fromTo(lgs,{y:0,opacity:1,scale:1,rotateX:0},{y:(i)=>-50-i*12,opacity:0,ease:"none",immediateRender:false},.45);}
  }
  const nt=g.from(".note",{y:-400,rotate:(i)=>i%2?25:-25,opacity:0,stagger:.15,duration:1.1,ease:"back.out(1.4)",paused:true}); const io=new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){nt.play();io.disconnect();} },{threshold:.25}); io.observe(document.getElementById("pile"));
 });
