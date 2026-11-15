@@ -45,9 +45,17 @@ h1 span{background:linear-gradient(90deg,#4F7CFF,#9B5CFF 60%,#D45CFF);-webkit-ba
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
+.ts{display:none}
+@media (max-width:640px){
+ .bar{left:12px;right:12px;transform:none;max-width:none;padding:6px 6px 6px 8px;gap:8px}
+ .back{flex:1;min-width:0;font-size:16px!important;font-weight:600!important;color:var(--ink)!important;padding:10px 10px!important}
+ .back .t{display:none}.back .ts{display:inline}
+ .lgb b{padding:7px 11px;font-size:13px}
+ .dl{order:3;width:44px;height:44px;padding:0!important;justify-content:center}
+ .dl .dlt{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+ .dl svg{width:20px;height:20px}
+}
 @media (max-width:520px){
- .bar a,.bar button{padding:8px 11px;font-size:13px}
- .back .t{display:none}
  main{padding:84px 12px 48px}
  .sheet{border-radius:10px}
 }
@@ -56,8 +64,8 @@ h1 span{background:linear-gradient(90deg,#4F7CFF,#9B5CFF 60%,#D45CFF);-webkit-ba
 </head>
 <body>
 <nav class="bar" aria-label="Resume">
- <a class="back" href="index.html" aria-label="Back to portfolio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg><span class="t" data-i18n="back">Back to portfolio</span></a>
- <a class="dl" href="assets/resume/Weerachon_Kammoon_Resume.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg><span data-i18n="dl">Download PDF</span></a>
+ <a class="back" href="index.html" aria-label="Back to portfolio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg><span class="t" data-i18n="back">Back to portfolio</span><span class="ts" data-i18n="backs">Portfolio</span></a>
+ <a class="dl" href="assets/resume/Weerachon_Kammoon_Resume.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg><span class="dlt" data-i18n="dl">Download PDF</span></a>
  <button type="button" class="lgb" id="lgb" aria-label="Switch language"><b data-l="th">TH</b><b data-l="en" class="on">EN</b></button>
 </nav>
 <main>
@@ -74,8 +82,8 @@ h1 span{background:linear-gradient(90deg,#4F7CFF,#9B5CFF 60%,#D45CFF);-webkit-ba
  </div>
 </main>
 <script>
-const T={en:{back:"Back to portfolio",dl:"Download PDF",kick:"Weerachon Kammoon",title:"Resume",contact:"Contact me"},
-th:{back:"กลับไปหน้าพอร์ต",dl:"ดาวน์โหลด PDF",kick:"วีรชน คำมูล",title:"เรซูเม่",contact:"ติดต่อ"}};
+const T={en:{back:"Back to portfolio",backs:"Portfolio",dl:"Download PDF",kick:"Weerachon Kammoon",title:"Resume",contact:"Contact me"},
+th:{back:"กลับไปหน้าพอร์ต",backs:"พอร์ตโฟลิโอ",dl:"ดาวน์โหลด PDF",kick:"วีรชน คำมูล",title:"เรซูเม่",contact:"ติดต่อ"}};
 function setLang(l){document.querySelectorAll('[data-i18n]').forEach(e=>{const v=T[l][e.dataset.i18n];if(v)e.textContent=v});document.querySelectorAll('#lgb b').forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.documentElement.lang=l;try{localStorage.setItem('lang',l)}catch(e){}}
 document.getElementById('lgb').addEventListener('click',()=>setLang(document.documentElement.lang==='th'?'en':'th'));
 let l='en';try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')||'en'}catch(e){}
