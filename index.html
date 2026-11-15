@@ -136,6 +136,10 @@ h1.h1{font-size:64px;font-weight:500;line-height:1.15;color:#171717;margin:0;let
 #clients{background:#fff;height:200vh}
 .clstage{display:flex;align-items:center;justify-content:center;padding:0 24px}.clw{width:100%}
 .clw{max-width:1200px;margin:0 auto;text-align:center}
+#clients .h2{transform-origin:50% 60%}
+#clients{height:auto!important}#clients .clstage{position:relative;height:auto;min-height:100vh}
+.lgs{perspective:1200px}
+.lg{will-change:transform,opacity}
 .clk{font-size:13px;color:#8D9197;letter-spacing:.12em;text-transform:uppercase;margin:0 0 12px}
 .lgs{list-style:none;margin:48px 0 0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:24px 48px;max-width:1240px;margin-left:auto;margin-right:auto}
 .lg{height:clamp(120px,18vh,180px);display:flex;align-items:center;justify-content:center;padding:12px 20px}
@@ -233,9 +237,9 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
 <section class="track" id="clients"><div class="stage clstage"><div class="clw"><p class="clk"><span class="ln"><span class="cw0"><span data-i18n="cl0">Trusted by</span></span></span></p><h2 class="h2" style="color:#171717;font-size:clamp(32px,4.4vw,64px)"><span class="ln"><span class="cw1"><span data-i18n="cl1">Companies I've worked with</span></span></span></h2><ul class="lgs"><li class="lg"><img src="assets/img/logo-esm.png" alt="E.S.M. Solution" style="height:76px"></li><li class="lg"><img src="assets/img/logo-codediva.png" alt="CODEDIVA" style="height:44px"></li><li class="lg"><img src="assets/img/logo-vlink.png" alt="VLINK" style="height:40px"></li><li class="lg"><img src="assets/img/logo-gc.png" alt="GC" style="height:72px"></li><li class="lg"><img src="assets/img/logo-gulf.png" alt="Gulf Space Technology" style="height:48px"></li><li class="lg"><img src="assets/img/logo-mapboss.png" alt="mapboss" style="height:116px"></li><li class="lg"><img src="assets/img/logo-jupiter.png" alt="Jupiter Professional Services" style="height:104px"></li><li class="lg"><img src="assets/img/logo-schoolbright.png" alt="School Bright" style="height:52px"></li></ul></div></div></section>
 
 <style>
-#cert{background:#fff;min-height:100vh;display:flex;align-items:center;padding:96px 24px 56px;overflow:hidden}
-.certw{max-width:1200px;width:100%;margin:0 auto}
-.cert-h{font-size:clamp(44px,6vw,88px);font-weight:600;line-height:1.05;margin:0;width:fit-content}
+#cert{background:#fff;min-height:100vh;display:flex;align-items:center;padding:clamp(76px,11vh,96px) 24px clamp(20px,5vh,56px);overflow:hidden}
+.certw{max-width:min(1200px,calc((100vh - 360px) * 4.2 + 48px));width:100%;margin:0 auto}
+.cert-h{font-size:clamp(40px,min(6vw,10vh),88px);font-weight:600;line-height:1.05;margin:0;width:fit-content}
 .cert-s{margin:6px 0 clamp(24px,4vh,48px);font-size:clamp(18px,1.6vw,24px);font-weight:500;color:#171717}
 .certs{perspective:1200px;list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
 .certs{align-items:start}.certs li{margin:0;padding-left:0!important}.certs li::before{display:none!important}
@@ -302,8 +306,8 @@ this.ctx=g.context(()=>{
   ci.fromTo("#cert .ctw",{yPercent:110},{yPercent:0,stagger:.12,ease:"expo.out",duration:.9},0)
     .fromTo("#cert .certs li",{y:90,opacity:0,rotateX:mm?0:12,scale:.94},{y:0,opacity:1,rotateX:0,scale:1,stagger:.14,ease:"power3.out",duration:.8},.2);
   if(!mm){const co=g.timeline({scrollTrigger:{trigger:"#cert",start:"bottom 85%",end:"bottom top",scrub:true}});
-  co.to("#cert .cert-h",{scale:1.15,ease:"none"},0).to("#cert .cert-h .ctw",{xPercent:-30,opacity:0,ease:"none"},0).to("#cert .cert-s .ctw",{yPercent:-60,opacity:0,ease:"none"},0)
-    .to("#cert .certs li",{y:-70,opacity:0,stagger:.08,ease:"none"},0);}
+  co.fromTo("#cert .cert-h",{scale:1},{scale:1.15,ease:"none",immediateRender:false,},0).fromTo("#cert .cert-h .ctw",{xPercent:0,yPercent:0,opacity:1},{xPercent:-30,opacity:0,ease:"none",immediateRender:false,},0).fromTo("#cert .cert-s .ctw",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false,},0)
+    .fromTo("#cert .certs li",{y:0,opacity:1,scale:1,rotateX:0},{y:(i)=>-60-i*25,opacity:0,ease:"none",immediateRender:false},0);}
  }
  window.addEventListener("load",()=>ST.refresh()); const cs=$$(".case");
  const big=innerWidth>760&&innerHeight>620; const slots=$$(".cslot");
@@ -320,10 +324,14 @@ this.ctx=g.context(()=>{
  const pn=$("#pn"),pb=$("#pb"),pr=$("#prog");
  ST.create({trigger:"#prof",start:"top 40%",end:"bottom 60%",onToggle:s=>pr.classList.toggle("show",s.isActive),onUpdate:s=>{const i=Math.min(cs.length-1,Math.floor(s.progress*cs.length));pn.textContent=String(i+1).padStart(2,"0")+" / "+cs.length;pb.style.width=(s.progress*100)+"%";}});
  g.to("#pf",{backgroundColor:"#131922",ease:"none",scrollTrigger:{trigger:"#pain",start:"top bottom",end:"top top",scrub:true}});
- if(mm) g.from(".lg",{y:30,opacity:0,stagger:.08,duration:.7,scrollTrigger:{trigger:".lgs",start:"top 85%"}}); else {const lgs=$$(".lg"),c=(lgs.length-1)/2; const tl=g.timeline({scrollTrigger:{trigger:"#clients",start:"top 85%",end:"top 5%",scrub:true}});
-  tl.fromTo(".cw0,.cw1",{yPercent:110},{yPercent:0,stagger:.05,ease:"none",duration:.3},0)
-    .fromTo(lgs,{x:(i)=>((i%4)-1.5)*240,y:(i)=>(i<4?-140:140),rotate:(i)=>((i%4)-1.5)*10,scale:.6,opacity:0},{x:0,y:0,rotate:0,scale:1,opacity:1,ease:"power2.out",duration:.7,stagger:.04},0.1);
-  g.fromTo(".clw",{scale:1,opacity:1,y:0},{scale:.92,opacity:0,y:-80,ease:"none",immediateRender:false,scrollTrigger:{trigger:"#clients",start:"bottom 140%",end:"bottom bottom",scrub:true}});}
+ {const lgs=$$(".lg");
+  const li=g.timeline({scrollTrigger:{trigger:"#clients",start:"top 85%",end:mm?"top 30%":"top 15%",scrub:.6}});
+  li.fromTo(".cw0,.cw1",{yPercent:110},{yPercent:0,stagger:.12,ease:"expo.out",duration:.9},0)
+    .fromTo(lgs,{y:90,opacity:0,rotateX:mm?0:12,scale:.94},{y:0,opacity:1,rotateX:0,scale:1,stagger:.08,ease:"power3.out",duration:.8},.2);
+  if(!mm){const lo=g.timeline({scrollTrigger:{trigger:"#clients",start:"bottom 85%",end:"bottom top",scrub:true}});
+  lo.fromTo("#clients .h2",{scale:1},{scale:1.15,ease:"none",immediateRender:false,},0).fromTo(".cw1",{xPercent:0,yPercent:0,opacity:1},{xPercent:-30,opacity:0,ease:"none",immediateRender:false,},0).fromTo(".cw0",{yPercent:0,opacity:1},{yPercent:-60,opacity:0,ease:"none",immediateRender:false,},0)
+    .fromTo(lgs,{y:0,opacity:1,scale:1,rotateX:0},{y:(i)=>-50-i*12,opacity:0,ease:"none",immediateRender:false},0);}
+ }
  const nt=g.from(".note",{y:-400,rotate:(i)=>i%2?25:-25,opacity:0,stagger:.15,duration:1.1,ease:"back.out(1.4)",paused:true}); const io=new IntersectionObserver(es=>{ if(es.some(x=>x.isIntersecting)){nt.play();io.disconnect();} },{threshold:.25}); io.observe(document.getElementById("pile"));
 });
 }
