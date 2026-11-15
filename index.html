@@ -207,7 +207,7 @@ h2.h2{font-size:48px;font-weight:500;margin:0;letter-spacing:-.02em;line-height:
  h1.h1{font-size:40px} .cc{display:none} .mrow{display:block;overflow:hidden;margin-top:8px;width:100vw}
  .mrow>div{display:flex;gap:10px;width:max-content;animation:mq2 26s linear infinite}.mrow.r2>div{animation-direction:reverse}
  .mq{height:90px;border-radius:12px}
- #hero{height:auto} #hero .stage{position:relative;height:auto;padding:100px 20px 32px;gap:28px} .hbot{grid-template-columns:1fr} .hbot .cta{justify-content:flex-start} .htop span:nth-child(2){display:none}
+ #hero{height:auto} #hero .stage{position:relative;height:auto;min-height:100vh;min-height:100svh;justify-content:center;padding:96px 20px 112px;gap:28px} .hbot{grid-template-columns:1fr} .hbot .cta{justify-content:flex-start} .htop span:nth-child(2){display:none}
  .mw.big{font-size:36px} .mtext{font-size:20px}
  #prof{padding:96px 12px} .case{border-radius:24px;min-height:0} .cslot{position:relative;height:auto;padding:88px 0 16px} .prog{display:none}
  .cats{display:none} .chips{display:flex;gap:8px;overflow-x:auto;width:100%;padding-bottom:6px}
@@ -315,13 +315,13 @@ this.ctx=g.context(()=>{
  const big=innerWidth>760&&innerHeight>620; const slots=$$(".cslot");
  cs.forEach((c,k)=>{
   const el=[c.querySelector(".cnum"),c.querySelector(".ptitle"),c.querySelector(".ptype"),...c.querySelectorAll(".pbul li")], im=c.querySelector(".cimg img");
-  const tl=g.timeline({defaults:{ease:"power2.out"},scrollTrigger:{trigger:slots[k],start:"top 90%",end:"top 15%",scrub:0.8}});
+  const tl=g.timeline({defaults:{ease:"power2.out"},scrollTrigger:{trigger:slots[k],start:mm?"top 95%":"top 90%",end:mm?"top 55%":"top 15%",scrub:mm?.4:0.8}});
   if(big&&k>0) tl.fromTo(c,{y:80,scale:.96},{y:0,scale:1,duration:1},0);
   tl.fromTo(el,{y:28,opacity:0},{y:0,opacity:1,stagger:.08,duration:.6},0.25)
     .fromTo(im,{x:60,opacity:0,scale:.97},{x:0,opacity:1,scale:1,duration:.8},0.2);
   if(big&&slots[k+1]) g.fromTo(c,{filter:"blur(0px) brightness(1)",scale:1},{filter:"blur(8px) brightness(.96)",scale:.94,ease:"none",immediateRender:false,scrollTrigger:{trigger:slots[k+1],start:"top 55%",end:"top 8%",scrub:.4}});
  });
- const nls=$$(".nl"),nav=$("#pnav").parentNode; const setA=(i)=>{nls.forEach((a,k)=>{a.classList.toggle("on",k===i);a.dataset.d=Math.min(4,Math.abs(k-i));}); const pc=$("#pcur"); if(pc)pc.textContent=String(i+1).padStart(2,"0"); const pf=$("#pfill"); if(pf){const fit=()=>{const rl=pf.parentNode.getBoundingClientRect(),r=nls[i].getBoundingClientRect(); pf.style.height=Math.max(0,r.top+r.height/2-rl.top)+"px";}; fit(); clearTimeout(pf._t); pf._t=setTimeout(fit,400);} const a=nls[i]; if(nav.scrollHeight>nav.clientHeight){nav.scrollTo({top:a.offsetTop-nav.clientHeight/2,behavior:"smooth"})} if(nav.scrollWidth>nav.clientWidth){nav.scrollTo({left:a.parentNode.offsetLeft-20,behavior:"smooth"})} };
+ const nls=$$(".nl"),nav=$("#pnav").parentNode; const setA=(i)=>{nls.forEach((a,k)=>{a.classList.toggle("on",k===i);a.dataset.d=Math.min(4,Math.abs(k-i));}); const pc=$("#pcur"); if(pc)pc.textContent=String(i+1).padStart(2,"0"); const pf=$("#pfill"); if(pf){const fit=()=>{const rl=pf.parentNode.getBoundingClientRect(),r=nls[i].getBoundingClientRect(); pf.style.height=Math.max(0,r.top+r.height/2-rl.top)+"px";}; fit(); clearTimeout(pf._t); pf._t=setTimeout(fit,400);} const a=nls[i]; if(nav.scrollHeight>nav.clientHeight){nav.scrollTo({top:a.offsetTop-nav.clientHeight/2,behavior:"smooth"})} if(nav.scrollWidth>nav.clientWidth){const nr=nav.getBoundingClientRect(),ar=a.getBoundingClientRect();nav.scrollTo({left:Math.max(0,nav.scrollLeft+ar.left-nr.left-(nr.width-ar.width)/2),behavior:"smooth"})} };
  const trg=slots.map((sl,k)=>ST.create({trigger:sl,start:"top 45%",end:"bottom 45%",onToggle:s=>{if(s.isActive)setA(k)}}));
  nls.forEach(a=>a.addEventListener("click",e=>{e.preventDefault(); const y=trg[+a.dataset.i].start+innerHeight*.45+2; if(this.lenis)this.lenis.scrollTo(y,{duration:1.2}); else window.scrollTo({top:y,behavior:"smooth"}); }));
  const pn=$("#pn"),pb=$("#pb"),pr=$("#prog");
@@ -342,5 +342,28 @@ this.ctx=g.context(()=>{
 function setLang(l){document.querySelectorAll('[data-i18n]').forEach(e=>{e.textContent=I18N[l][e.dataset.i18n]});document.querySelectorAll('#lgb b').forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.documentElement.lang=l;window.__lang=l;}
 document.getElementById('lgb').addEventListener('click',()=>setLang(window.__lang==='th'?'en':'th'));setLang('en');
 new Portfolio().componentDidMount();</script>
+<style id="mfix">
+@media (max-width:900px){
+ /* Clients: compact logo grid, no leftover empty space */
+ #clients .clstage{min-height:0!important;padding:72px 16px 40px!important}
+ #clients .h2{font-size:clamp(28px,8vw,40px)!important}
+ .lgs{gap:4px 16px!important;margin-top:28px!important}
+ .lg{height:76px!important;padding:8px!important}
+ .lg img{max-height:44px!important;max-width:88%!important;height:auto!important}
+ /* Certificate: tighter top */
+ #cert .certstage{padding:48px 16px 56px!important}
+ .cert-h{font-size:clamp(36px,11vw,56px)!important;margin-bottom:24px!important}
+ /* Work: chip bar covers the strip under the floating menu, active chip fully visible */
+ .pnav{top:0!important;padding:72px 0 10px!important;margin:0 -12px!important;background:#F5F5F7!important;box-shadow:0 8px 16px -12px rgba(19,25,34,.18)}
+ .pnav ol{padding:0 16px!important}
+ .nl.on{font-size:15px!important}
+ .nl{transform:none!important}
+ .cslot{padding:16px 0!important;scroll-margin-top:140px}
+ .case{padding:20px!important}
+ .ptitle{font-size:clamp(24px,7vw,30px)!important;line-height:1.15!important}
+ .cimg img{max-width:100%;height:auto}
+}
+@media (max-width:400px){.lg{height:64px!important}.lg img{max-height:38px!important}}
+</style>
 </body>
 </html>
