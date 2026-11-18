@@ -42,6 +42,7 @@ h1 span{background:linear-gradient(90deg,#4F7CFF,#9B5CFF 60%,#D45CFF);-webkit-ba
 .btn.sec{background:#fff;color:var(--ink);border:1px solid var(--line)}
 .btn:hover{transform:translateY(-1px)}
 .btn,.bar a{transition:transform .2s,background .2s,color .2s}
+html[lang=th] .kick{letter-spacing:.02em}
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
 .reveal.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}}
@@ -65,7 +66,7 @@ h1 span{background:linear-gradient(90deg,#4F7CFF,#9B5CFF 60%,#D45CFF);-webkit-ba
 <body>
 <nav class="bar" aria-label="Resume">
  <a class="back" href="index.html" aria-label="Back to portfolio"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 18l-6-6 6-6"/></svg><span class="t" data-i18n="back">Back to portfolio</span><span class="ts" data-i18n="backs">Portfolio</span></a>
- <a class="dl" href="assets/resume/Weerachon_Kammoon_Resume.pdf" download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg><span class="dlt" data-i18n="dl">Download PDF</span></a>
+ <a class="dl" href="assets/resume/Weerachon_Kammoon_Resume.pdf" data-pdf download><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v12M6 10l6 6 6-6M5 20h14"/></svg><span class="dlt" data-i18n="dl">Download PDF</span></a>
  <button type="button" class="lgb" id="lgb" aria-label="Switch language"><b data-l="th">TH</b><b data-l="en" class="on">EN</b></button>
 </nav>
 <main>
@@ -73,18 +74,20 @@ h1 span{background:linear-gradient(90deg,#4F7CFF,#9B5CFF 60%,#D45CFF);-webkit-ba
   <p class="kick" data-i18n="kick">Weerachon Kammoon</p>
   <h1><span data-i18n="title">Resume</span></h1>
  </header>
- <a href="assets/resume/Weerachon_Kammoon_Resume.pdf" target="_blank" rel="noopener" class="reveal" aria-label="Open the resume PDF">
-  <img class="sheet" src="assets/resume/resume.webp" srcset="assets/resume/resume-1000.webp 1000w, assets/resume/resume.webp 1820w" sizes="(max-width:920px) 100vw, 880px" width="1820" height="2574" alt="Resume of Weerachon Kammoon, Product Owner / Senior UX/UI Designer: profile, experience at Jabjai, Jupiter Professional Services, Virtual Link Solutions, Codediva and E.S.M. Solution, core skills, tools and education.">
+ <a href="assets/resume/Weerachon_Kammoon_Resume.pdf" data-pdf target="_blank" rel="noopener" class="reveal" aria-label="Open the resume PDF">
+  <img class="sheet" id="sheet" src="assets/resume/resume.webp" srcset="assets/resume/resume-1000.webp 1000w, assets/resume/resume.webp 1820w" sizes="(max-width:920px) 100vw, 880px" width="1820" height="2574" alt="Resume of Weerachon Kammoon, Product Owner / Senior UX/UI Designer: profile, experience at Jabjai, Jupiter Professional Services, Virtual Link Solutions, Codediva and E.S.M. Solution, core skills, tools and education.">
  </a>
  <div class="actions reveal">
-  <a class="btn pri" href="assets/resume/Weerachon_Kammoon_Resume.pdf" download><span data-i18n="dl">Download PDF</span></a>
+  <a class="btn pri" href="assets/resume/Weerachon_Kammoon_Resume.pdf" data-pdf download><span data-i18n="dl">Download PDF</span></a>
   <a class="btn sec" href="index.html#contact"><span data-i18n="contact">Contact me</span></a>
  </div>
 </main>
 <script>
 const T={en:{back:"Back to portfolio",backs:"Portfolio",dl:"Download PDF",kick:"Weerachon Kammoon",title:"Resume",contact:"Contact me"},
 th:{back:"กลับไปหน้าพอร์ต",backs:"พอร์ตโฟลิโอ",dl:"ดาวน์โหลด PDF",kick:"วีรชน คำมูล",title:"เรซูเม่",contact:"ติดต่อ"}};
-function setLang(l){document.querySelectorAll('[data-i18n]').forEach(e=>{const v=T[l][e.dataset.i18n];if(v)e.textContent=v});document.querySelectorAll('#lgb b').forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.documentElement.lang=l;try{localStorage.setItem('lang',l)}catch(e){}}
+const R={en:{src:"assets/resume/resume.webp",set:"assets/resume/resume-1000.webp 1000w, assets/resume/resume.webp 1820w",pdf:"assets/resume/Weerachon_Kammoon_Resume.pdf"},th:{src:"assets/resume/resume-th.webp",set:"assets/resume/resume-th-1000.webp 1000w, assets/resume/resume-th.webp 1820w",pdf:"assets/resume/Weerachon_Kammoon_Resume_TH.pdf"}};
+function setDoc(l){const r=R[l]||R.en,im=document.getElementById('sheet');im.srcset=r.set;im.src=r.src;document.querySelectorAll('[data-pdf]').forEach(a=>a.href=r.pdf);}
+function setLang(l){setDoc(l);document.querySelectorAll('[data-i18n]').forEach(e=>{const v=T[l][e.dataset.i18n];if(v)e.textContent=v});document.querySelectorAll('#lgb b').forEach(b=>b.classList.toggle('on',b.dataset.l===l));document.documentElement.lang=l;try{localStorage.setItem('lang',l)}catch(e){}}
 document.getElementById('lgb').addEventListener('click',()=>setLang(document.documentElement.lang==='th'?'en':'th'));
 let l='en';try{l=new URLSearchParams(location.search).get('lang')||localStorage.getItem('lang')||'en'}catch(e){}
 if(l==='th')setLang('th');
